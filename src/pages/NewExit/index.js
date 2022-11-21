@@ -4,7 +4,7 @@ import UserContext from "../../contexts/UserContext.js";
 import {Container, Form, Input, Button} from '../../components/FormComponents.js'
 import { Title } from "./style.js";
 
-function NewEntry(){
+function NewExit(){
     const {userToken} = useContext(UserContext);
 
     const [formData, setFormData] = useState({
@@ -19,7 +19,7 @@ function NewEntry(){
         event.preventDefault();
         console.log(formData);
         try {
-            await api.createEntry(formData, userToken);
+            await api.createExit(formData, userToken);
         } catch (error) {
             alert('Erro, tente novamente');
             console.log(error);
@@ -27,14 +27,14 @@ function NewEntry(){
     }
     return(
         <Container alignSelf='start'>
-            <Title>Nova entrada</Title>
+            <Title>Nova saída</Title>
             <Form onSubmit={handleSubmit}>
                 <Input placeholder='Valor'type='number' onChange={(event)=>handleChange(event)} name='amount' value= {formData.amount} required/>
                 <Input placeholder='Descrição'type='text' onChange={(event)=>handleChange(event)} name='description' value= {formData.description} required/>
-                <Button>Salvar entrada</Button>
+                <Button>Salvar saída</Button>
             </Form>
         </Container>
     )
 }
 
-export default NewEntry;
+export default NewExit;

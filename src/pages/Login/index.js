@@ -25,7 +25,7 @@ function Login(){
         try {
             const answer = await api.login(formData);
             setUserToken(answer);
-            navigate('/new-entry');
+            navigate('/new-exit');
         } catch (error) {
             alert('Erro, tente novamente');
             console.log(error);

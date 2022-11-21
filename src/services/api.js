@@ -18,10 +18,18 @@ async function createEntry(entry, token){
     axios.post(`${base_URL}/new-entry`, entry, config).then((res)=>{console.log(res.data)}).catch((error)=>{console.log(error)});
 }
 
+async function createExit(exit, token){
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+    axios.post(`${base_URL}/new-exit`, exit, config).then((res)=>{console.log(res.data)}).catch((error)=>{console.log(error)});
+}
+
 const api = {
     creatUser,
     login,
-    createEntry
+    createEntry,
+    createExit
 }
 
 export default api;
