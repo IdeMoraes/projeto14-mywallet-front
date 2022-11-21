@@ -25,11 +25,20 @@ async function createExit(exit, token){
     axios.post(`${base_URL}/new-exit`, exit, config).then((res)=>{console.log(res.data)}).catch((error)=>{console.log(error)});
 }
 
+async function logout(token){
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+    const {data} = await axios.delete(`${base_URL}/logout`, config);
+    return data;
+}
+
 const api = {
     creatUser,
     login,
     createEntry,
-    createExit
+    createExit,
+    logout,
 }
 
 export default api;

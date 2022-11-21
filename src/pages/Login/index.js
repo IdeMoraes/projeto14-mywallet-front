@@ -9,7 +9,7 @@ function Login(){
 
     const navigate = useNavigate();
 
-    const {setUserToken} = useContext(UserContext);
+    const {setUserToken, setUserName} = useContext(UserContext);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -24,8 +24,9 @@ function Login(){
         event.preventDefault();
         try {
             const answer = await api.login(formData);
-            setUserToken(answer);
-            navigate('/new-exit');
+            setUserToken(answer.token);
+            setUserName(answer.name);
+            navigate('/entries');
         } catch (error) {
             alert('Erro, tente novamente');
             console.log(error);
