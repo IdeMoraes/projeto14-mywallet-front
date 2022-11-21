@@ -1,23 +1,22 @@
-
 import React, { useState } from "react";
 import api from "../../services/api.js";
 import {Container, Form, Input, Button, StyledLink} from '../../components/FormComponents.js'
 import Logotype from "../../components/Logotype.js";
+import { useNavigate } from "react-router-dom";
 
 function SignUp(){
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
         confirmPassword: '',
     });
-
     function handleChange(event){
         setFormData({...formData, [event.target.name]: event.target.value});
     }
     async function handleSubmit(event){
         event.preventDefault();
-        //console.log(formData);
         if(formData.password!==formData.confirmPassword){
             alert("As senhas devem ser iguais");
             return
@@ -29,6 +28,7 @@ function SignUp(){
                 email: formData.email,
                 password: formData.password,
             });
+            navigate('/');
         } catch (error) {
             alert('Erro, tente novamente');
             console.log(error);
@@ -48,5 +48,4 @@ function SignUp(){
         </Container>
     )
 }
-
 export default SignUp;
