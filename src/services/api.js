@@ -11,9 +11,17 @@ async function login(user){
     return data;
 }
 
+async function createEntry(entry, token){
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+    axios.post(`${base_URL}/new-entry`, entry, config).then((res)=>{console.log(res.data)}).catch((error)=>{console.log(error)});
+}
+
 const api = {
     creatUser,
-    login
+    login,
+    createEntry
 }
 
 export default api;

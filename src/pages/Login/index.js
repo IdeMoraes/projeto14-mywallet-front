@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
 import api from "../../services/api.js";
-import {Container, Form, Input, Button, StyledLink} from '../../components/FormComponents.js'
-import Logotype from "../../components/Logotype.js";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../../contexts/UserContext.js";
+import {Container, Form, Input, Button, StyledLink} from '../../components/FormComponents.js'
+import Logotype from "../../components/Logotype.js";
 
 function Login(){
 
     const navigate = useNavigate();
 
-    const {userToken, setUserToken} = useContext(UserContext);
+    const {setUserToken} = useContext(UserContext);
 
     const [formData, setFormData] = useState({
         email: '',
@@ -25,7 +25,7 @@ function Login(){
         try {
             const answer = await api.login(formData);
             setUserToken(answer);
-            navigate('/entries');
+            navigate('/new-entry');
         } catch (error) {
             alert('Erro, tente novamente');
             console.log(error);
