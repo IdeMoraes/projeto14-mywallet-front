@@ -33,12 +33,21 @@ async function logout(token){
     return data;
 }
 
+async function listEntries(token){
+    const config = {
+        headers: { Authorization: `Bearer ${token}` }
+    };
+    const {data} = await axios.get (`${base_URL}/entries`, config);
+    return data;
+}
+
 const api = {
     creatUser,
     login,
     createEntry,
     createExit,
     logout,
+    listEntries
 }
 
 export default api;
